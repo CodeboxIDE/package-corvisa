@@ -8,7 +8,7 @@
         "codebox": ">=1.0.0"
     },
     "dependencies": {
-        "corvisa": "0.0.1"
+        "corvisa": "0.0.2"
     },
     "packageDependencies": {
         "editor": "CodeboxIDE/package-editor",

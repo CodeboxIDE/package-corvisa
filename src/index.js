@@ -22,7 +22,9 @@ var runProject = commands.register({
             settings.data.set("number", nb);
             settings.save();
 
-            alert("Call "+ nb);
+            return rpc.execute("corvisa/callme", {
+                number: nb
+            });
         });
     }
 });

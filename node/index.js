@@ -8,12 +8,21 @@ module.exports = function(codebox) {
     var corvisa = Corvisa(configs.apiKey, {
         endpoint: configs.endpoint
     });
+    var corvisaApp = corvisa.application(configs.appId);
 
     codebox.rpc.service("corvisa", {
-        callme: function() {
 
+        // Schedule a call to a specified number
+        callme: function(args) {
+            if (!args.number) throw "Need a number";
+
+            return corvisaApp.schedule({
+                "destination": number,
+                "internal_caller_id_number": configs.internalCaller.number,
+                "internal_caller_id_name": configs.internalCaller.name,
+                "destination_type": DESTINATION_TYPE
+            });
         },
-
 
     });
 };
