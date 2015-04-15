@@ -20,7 +20,7 @@ var runProject = commands.register({
         })
         .then(function(nb) {
             settings.data.set("number", nb);
-            settings.save();
+            codebox.settings.save();
 
             return rpc.execute("corvisa/callme", {
                 number: nb
