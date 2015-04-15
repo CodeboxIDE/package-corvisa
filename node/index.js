@@ -1,10 +1,18 @@
+var path = require("path");
+
 var Corvisa = require("corvisa");
-var configs = require("./configs");
+var configs = require("./config");
+
+var SCRIPTS_ROOT = path.resolve(__dirname, "../scripts");
 
 module.exports = function(codebox) {
     var workspace = codebox.workspace;
     var events = codebox.events;
 
+    // RPC services
+    var terminal = codebox.rpc.get("terminal");
+
+    // Client for corvisa api
     var corvisa = Corvisa(configs.apiKey, {
         endpoint: configs.endpoint
     });
@@ -23,6 +31,19 @@ module.exports = function(codebox) {
                 "destination_type": DESTINATION_TYPE
             });
         },
+
+        // Start the simulator and return the shell id
+        simulator: function() {
+            return terminal.create({
+                    shellId: "corvisa-simulator",
+                    command: [
+                        '/bin/bash',
+
+                        // Script itself
+                        path.resolve(SCRIPTS_ROOT, "simulator.sh")
+                    ]
+                });
+        }
 
     });
 };

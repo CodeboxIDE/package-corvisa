@@ -7,27 +7,41 @@ var rpc = codebox.require("core/rpc");
 var dialogs = codebox.require("utils/dialogs");
 
 // Commands
-var runProject = commands.register({
-    id: "corvisa.callme",
-    title: "Corvisa: Call Me",
-    run: function() {
-        return Q()
-        .then(function(r) {
-            if (!settings.data.get("number")) {
-                return dialogs.prompt("Enter your phone number:");
-            }
-            return settings.data.get("number");
-        })
-        .then(function(nb) {
-            settings.data.set("number", nb);
-            codebox.settings.save();
-
-            return rpc.execute("corvisa/callme", {
-                number: nb
+commands.register([
+    {
+        id: "corvisa.simulator",
+        title: "Corvisa: Run Simulator",
+        run: function() {
+            return rpc.execute("corvisa/simulator")
+            .then(function(r) {
+                return commands.run("terminal.open", {
+                    shellId: r.shellId
+                });
             });
-        });
+        }
+    },
+    {
+        id: "corvisa.callme",
+        title: "Corvisa: Call Me",
+        run: function() {
+            return Q()
+            .then(function(r) {
+                if (!settings.data.get("number")) {
+                    return dialogs.prompt("Enter your phone number:");
+                }
+                return settings.data.get("number");
+            })
+            .then(function(nb) {
+                settings.data.set("number", nb);
+                codebox.settings.save();
+
+                return rpc.execute("corvisa/callme", {
+                    number: nb
+                });
+            });
+        }
     }
-});
+]);
 
 codebox.menubar.createMenu({
     caption: "Corvisa Summit",
@@ -47,7 +61,7 @@ codebox.menubar.createMenu({
         },
         {
             caption: "Debug Application",
-            command: "corvisa.simulator"
+            command: "corvisa.debug"
         },
         { type: "separator" },
         {

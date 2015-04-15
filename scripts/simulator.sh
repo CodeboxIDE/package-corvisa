@@ -1,6 +1,7 @@
 #!/bin/bash
 
-token=`/bin/tar -cz --exclude .git -C /SummitApp .|ssh -o "StrictHostKeyChecking no" -o "PasswordAuthentication no" -q test@code.corvisacloud.com`
+sleep 1
+token=`tar -cz --exclude .git .|ssh -o "StrictHostKeyChecking no" -o "PasswordAuthentication no" -q test@code.corvisacloud.com`
 clear
 
 echo "Running Simulator..."
