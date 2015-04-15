@@ -9,18 +9,6 @@ var dialogs = codebox.require("utils/dialogs");
 // Commands
 commands.register([
     {
-        id: "corvisa.simulator",
-        title: "Corvisa: Run Simulator",
-        run: function() {
-            return rpc.execute("corvisa/simulator")
-            .then(function(r) {
-                return commands.run("terminal.open", {
-                    shellId: r.shellId
-                });
-            });
-        }
-    },
-    {
         id: "corvisa.callme",
         title: "Corvisa: Call Me",
         run: function() {
@@ -37,6 +25,30 @@ commands.register([
 
                 return rpc.execute("corvisa/callme", {
                     number: nb
+                });
+            });
+        }
+    },
+    {
+        id: "corvisa.simulator",
+        title: "Corvisa: Run Simulator",
+        run: function() {
+            return rpc.execute("corvisa/simulator")
+            .then(function(r) {
+                return commands.run("terminal.open", {
+                    shellId: r.shellId
+                });
+            });
+        }
+    },
+    {
+        id: "corvisa.test",
+        title: "Corvisa: Start Test Runner",
+        run: function() {
+            return rpc.execute("corvisa/test")
+            .then(function(r) {
+                return commands.run("terminal.open", {
+                    shellId: r.shellId
                 });
             });
         }

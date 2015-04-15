@@ -43,6 +43,19 @@ module.exports = function(codebox) {
                         path.resolve(SCRIPTS_ROOT, "simulator.sh")
                     ]
                 });
+        },
+
+        // Start the test runner and return the shell id
+        test: function() {
+            return terminal.create({
+                    shellId: "corvisa-test",
+                    command: [
+                        '/bin/bash',
+
+                        // Script itself
+                        path.resolve(SCRIPTS_ROOT, "test.sh")
+                    ]
+                });
         }
 
     });

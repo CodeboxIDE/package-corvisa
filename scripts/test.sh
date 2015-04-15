@@ -1,6 +1,7 @@
 #!/bin/bash
 
-token=`/bin/tar -cz --exclude .git -C /SummitApp .|ssh -q test@code.corvisacloud.com`
+sleep 1
+token=`tar -cz --exclude .git .|ssh -q test@code.corvisacloud.com`
 clear
 
 echo "Starting Test Runner..."
