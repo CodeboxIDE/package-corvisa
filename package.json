@@ -1,0 +1,19 @@
+{
+    "name": "corvisa",
+    "version": "0.0.0",
+    "browser": "./src/index.js",
+    "node": "./node/index.js",
+    "description": "",
+    "engines": {
+        "codebox": ">=1.0.0"
+    },
+    "dependencies": {
+        "corvisa": "0.0.1"
+    },
+    "packageDependencies": {
+        "editor": "CodeboxIDE/package-editor",
+        "menubar": "CodeboxIDE/package-menubar",
+        "project": "CodeboxIDE/package-project",
+        "terminal": "CodeboxIDE/package-terminal"
+    }
+}
