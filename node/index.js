@@ -1,7 +1,7 @@
 var path = require("path");
 
 var Corvisa = require("corvisa");
-var configs = require("./config");
+var config = require("./config");
 
 var SCRIPTS_ROOT = path.resolve(__dirname, "../scripts");
 
@@ -13,10 +13,10 @@ module.exports = function(codebox) {
     var terminal = codebox.rpc.get("terminal");
 
     // Client for corvisa api
-    var corvisa = Corvisa(configs.apiKey, {
-        endpoint: configs.endpoint
+    var corvisa = Corvisa(config.api.key, config.api.secret, {
+        endpoint: config.endpoint
     });
-    var corvisaApp = corvisa.application(configs.appId);
+    var corvisaApp = corvisa.application(config.appId);
 
     codebox.rpc.service("corvisa", {
 
@@ -26,8 +26,8 @@ module.exports = function(codebox) {
 
             return corvisaApp.schedule({
                 "destination": number,
-                "internal_caller_id_number": configs.internalCaller.number,
-                "internal_caller_id_name": configs.internalCaller.name,
+                "internal_caller_id_number": config.internalCaller.number,
+                "internal_caller_id_name": config.internalCaller.name,
                 "destination_type": DESTINATION_TYPE
             });
         },
