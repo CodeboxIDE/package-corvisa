@@ -14,6 +14,8 @@
         "editor": "CodeboxIDE/package-editor",
         "menubar": "CodeboxIDE/package-menubar",
         "project": "CodeboxIDE/package-project",
-        "terminal": "CodeboxIDE/package-terminal"
+        "terminal": "CodeboxIDE/package-terminal",
+        "audio": "CodeboxIDE/package-audio",
+        "recorder": "CodeboxIDE/package-recorder"
     }
 }
