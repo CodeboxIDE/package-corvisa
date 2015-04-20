@@ -1,4 +1,5 @@
 var settings = require("./settings");
+var autocomplete = require("./autocomplete");
 
 var Q = codebox.require("q");
 var _ = codebox.require("hr.utils");
