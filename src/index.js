@@ -52,6 +52,13 @@ commands.register([
                 });
             });
         }
+    },
+    {
+        id: "corvisa.dashboard",
+        title: "Corvisa: Return to Dashboard",
+        run: function() {
+            window.open("https://platform.corvisacloud.com/#/home");
+        }
     }
 ]);
 
