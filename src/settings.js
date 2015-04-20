@@ -7,8 +7,8 @@ module.exports = codebox.settings.schema("corvisa",
                 "title": "Your Phone Number",
                 "type": "string"
             },
-            "autocomplete": {
-                "title": "Enable autocomplete",
+            "autocompletion": {
+                "title": "Enable Summit autocompletions",
                 "type": "boolean",
                 "default": true
             }
