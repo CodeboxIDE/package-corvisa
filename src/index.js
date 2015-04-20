@@ -55,6 +55,12 @@ commands.register([
     }
 ]);
 
+// Replace run comman with run of corvisa simulator
+var runCommand = commands.get("run.project");
+runCommand.set("run", function() {
+    return commands.run("corvisa.simulator");
+});
+
 codebox.menubar.createMenu({
     caption: "Corvisa Summit",
     items: [
@@ -69,7 +75,7 @@ codebox.menubar.createMenu({
         },
         {
             caption: "Run Simulator",
-            command: "corvisa.simulator"
+            command: "run.project"
         },
         {
             caption: "Debug Application",
