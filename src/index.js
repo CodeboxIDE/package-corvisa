@@ -3,6 +3,7 @@ require("./stylesheets/main.less");
 var settings = require("./settings");
 var templateWelcome = require("./templates/welcome.html");
 var PanelNumbers = require("./numbers");
+var autocomplete = require("./autocomplete");
 
 var Q = codebox.require("q");
 var _ = codebox.require("hr.utils");
