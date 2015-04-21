@@ -1,10 +1,15 @@
+require("./stylesheets/main.less");
+
 var settings = require("./settings");
+var templateWelcome = require("./templates/welcome.html");
+var PanelNumbers = require("./numbers");
 
 var Q = codebox.require("q");
 var _ = codebox.require("hr.utils");
 var commands = codebox.require("core/commands");
 var rpc = codebox.require("core/rpc");
 var dialogs = codebox.require("utils/dialogs");
+
 
 // Commands
 commands.register([
@@ -62,12 +67,29 @@ commands.register([
     }
 ]);
 
-// Replace run comman with run of corvisa simulator
-var runCommand = commands.get("run.project");
-runCommand.set("run", function() {
+// Replace run command with run of corvisa simulator
+commands.get("run.project").set("run", function() {
     return commands.run("corvisa.simulator");
 });
 
+// Replace welcome command
+commands.get("application.welcome").set("run", function() {
+    return codebox.tabs.add(codebox.tabs.HtmlPanel, {
+        className: "component-corvisa-dialog",
+        content: templateWelcome
+    }, {
+        type: "welcome",
+        title: "Welcome"
+    });
+});
+
+// Numbers list
+codebox.panels.add(PanelNumbers, {}, {
+    title: "Numbers",
+    section: "numbers"
+});
+
+// Corvisa menu
 codebox.menubar.createMenu({
     caption: "Corvisa Summit",
     items: [

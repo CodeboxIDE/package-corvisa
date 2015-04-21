@@ -1,0 +1,7 @@
+<p>Click on one of these numbers to call and test your live application:</p>
+
+<ul class="numbers">
+<% _.each(numbers, function(number) { %>
+	<li class="number" data-number="<%- number %>"><%- number %></li>
+<% }); %>
+</ul>

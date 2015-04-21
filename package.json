@@ -8,14 +8,29 @@
         "codebox": ">=1.0.0-alpha"
     },
     "dependencies": {
-        "corvisa": "0.0.3"
+        "corvisa": "0.0.4",
+        "stringify": "3.1.0"
     },
     "packageDependencies": {
+        "run": "CodeboxIDE/package-run",
+        "tabs": "CodeboxIDE/package-tabs",
+        "about": "CodeboxIDE/package-about",
         "editor": "CodeboxIDE/package-editor",
         "menubar": "CodeboxIDE/package-menubar",
         "project": "CodeboxIDE/package-project",
         "terminal": "CodeboxIDE/package-terminal",
         "audio": "CodeboxIDE/package-audio",
-        "recorder": "CodeboxIDE/package-recorder"
+        "recorder": "CodeboxIDE/package-recorder",
+        "panels": "CodeboxIDE/package-panels",
+        "sip": "CodeboxIDE/package-sip"
+    },
+    "browserify": {
+        "transform": [
+            [
+                "stringify", {
+                    "extensions": [".md", ".html"]
+                }
+            ]
+        ]
     }
 }

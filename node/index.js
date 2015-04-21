@@ -56,6 +56,21 @@ module.exports = function(codebox) {
                         path.resolve(SCRIPTS_ROOT, "test.sh")
                     ]
                 });
+        },
+
+        // List numbers
+        numbers: function() {
+            return corvisa.get("number")
+            .then(function(result) {
+                var user = _.first(result.data);
+
+                return _.chain(user.number_orders)
+                    .pluck("number_order_lines")
+                    .flatten()
+                    .pluck("number")
+                    .flatten()
+                    .value();
+            });
         }
 
     });
