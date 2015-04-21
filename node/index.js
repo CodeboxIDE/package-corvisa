@@ -58,6 +58,16 @@ module.exports = function(codebox) {
                 });
         },
 
+        // Deploy to production
+        deploy: function() {
+            return terminal.create({
+                    shellId: "corvisa-deploy",
+                    command: [
+                        'git', 'push'
+                    ]
+                });
+        },
+
         // List numbers
         numbers: function() {
             return corvisa.get("number")

@@ -60,6 +60,18 @@ commands.register([
         }
     },
     {
+        id: "corvisa.deploy",
+        title: "Corvisa: Deploy To Production",
+        run: function() {
+            return rpc.execute("corvisa/deploy")
+            .then(function(r) {
+                return commands.run("terminal.open", {
+                    shellId: r.shellId
+                });
+            });
+        }
+    },
+    {
         id: "corvisa.dashboard",
         title: "Corvisa: Return to Dashboard",
         run: function() {
@@ -95,21 +107,12 @@ codebox.menubar.createMenu({
     caption: "Corvisa Summit",
     items: [
         {
-            caption: "Call Me",
-            command: "corvisa.callme"
-        },
-        { type: "separator" },
-        {
             caption: "Run Tests",
             command: "corvisa.test"
         },
         {
             caption: "Run Simulator",
             command: "run.project"
-        },
-        {
-            caption: "Debug Application",
-            command: "corvisa.debug"
         },
         { type: "separator" },
         {
