@@ -6,6 +6,10 @@ var $ = codebox.require("jquery");
 var rpc = codebox.require("core/rpc");
 var commands = codebox.require("core/commands");
 
+var getSIPConfig = _.memoize(function() {
+    return rpc.execute('corvisa/sip');
+});
+
 var Panel = View.Template.extend({
     template: templatePanel,
     className: "component-panel-corvisa-numbers",
@@ -39,9 +43,19 @@ var Panel = View.Template.extend({
 
     // Start a call
     doCallNumber: function(e) {
-        e.preventDefault();
+        var that = this;
         var number = $(e.currentTarget).data("number");
-        commands.run("sip.call", { number: number });
+
+        e.preventDefault();
+
+        return getSIPConfig()
+        .then(function(config) {
+            codebox.sip.setConfig({
+                // todo make config
+            });
+
+            return commands.run("sip.call", { number: number });
+        });
     }
 });
 

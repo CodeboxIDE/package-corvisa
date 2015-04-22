@@ -15,24 +15,11 @@ module.exports = function(codebox) {
 
     // Client for corvisa api
     var corvisa = Corvisa(config.api.key, config.api.secret, {
-        endpoint: config.endpoint
+        endpoint: config.api.endpoint
     });
     var corvisaApp = corvisa.application(config.appId);
 
     codebox.rpc.service("corvisa", {
-
-        // Schedule a call to a specified number
-        callme: function(args) {
-            if (!args.number) throw "Need a number";
-
-            return corvisaApp.schedule({
-                "destination": number,
-                "internal_caller_id_number": config.internalCaller.number,
-                "internal_caller_id_name": config.internalCaller.name,
-                "destination_type": DESTINATION_TYPE
-            });
-        },
-
         // Start the simulator and return the shell id
         simulator: function() {
             return terminal.create({
@@ -104,6 +91,11 @@ module.exports = function(codebox) {
                     .flatten()
                     .value();
             });
+        },
+
+        // Return SIP config
+        sip: function() {
+            return config.sip;
         }
 
     });
