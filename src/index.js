@@ -72,6 +72,20 @@ commands.register([
         }
     },
     {
+        id: "corvisa.debug",
+        title: "Corvisa: Debug with Breakpoints",
+        run: function() {
+            return rpc.execute("corvisa/debug", {
+                breakpoints: codebox.editor.breakpoints.toJSON()
+            })
+            .then(function(r) {
+                return commands.run("terminal.open", {
+                    shellId: r.shellId
+                });
+            });
+        }
+    },
+    {
         id: "corvisa.dashboard",
         title: "Corvisa: Return to Dashboard",
         run: function() {
@@ -113,6 +127,10 @@ codebox.menubar.createMenu({
         {
             caption: "Run Simulator",
             command: "run.project"
+        },
+        {
+            caption: "Debug",
+            command: "corvisa.debug"
         },
         { type: "separator" },
         {

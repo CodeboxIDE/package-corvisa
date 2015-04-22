@@ -2,6 +2,7 @@ var path = require("path");
 
 var Corvisa = require("corvisa");
 var config = require("./config");
+var debug = require("./debug");
 
 var SCRIPTS_ROOT = path.resolve(__dirname, "../scripts");
 
@@ -66,6 +67,28 @@ module.exports = function(codebox) {
                         'git', 'push'
                     ]
                 });
+        },
+
+        // Debug an application
+        debug: function(args) {
+            var breakpoints = args.breakpoints;
+
+            return debug(workspace.root(), args.breakpoints)
+            .then(function(tmp) {
+                console.log('tmp', tmp);
+                return terminal.create({
+                    shellId: "corvisa-debug",
+                    command: [
+                        '/bin/bash',
+
+                        // Script itself
+                        path.resolve(SCRIPTS_ROOT, "simulator.sh")
+                    ],
+                    opts: {
+                        cwd: tmp
+                    }
+                });
+            });
         },
 
         // List numbers

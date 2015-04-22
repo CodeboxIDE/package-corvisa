@@ -8,8 +8,11 @@
         "codebox": ">=1.0.0-alpha"
     },
     "dependencies": {
+        "q": "~1.2.0",
+        "lodash": "~2.4.1",
         "corvisa": "0.0.4",
-        "stringify": "3.1.0"
+        "stringify": "3.1.0",
+        "wrench": "~1.5.8"
     },
     "packageDependencies": {
         "run": "CodeboxIDE/package-run",
