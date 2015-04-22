@@ -1,6 +1,7 @@
 var settings = require("./settings");
 var templatePanel = require("./templates/numbers.html");
 
+var _ = codebox.require("hr.utils");
 var View = codebox.require("hr.view");
 var $ = codebox.require("jquery");
 var rpc = codebox.require("core/rpc");
