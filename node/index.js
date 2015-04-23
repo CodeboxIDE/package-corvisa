@@ -3,7 +3,6 @@ var path = require("path");
 var request = require("request");
 var url = require("url");
 
-var Corvisa = require("corvisa");
 var config = require("./config");
 var debug = require("./debug");
 
@@ -15,12 +14,6 @@ module.exports = function(codebox) {
 
     // RPC services
     var terminal = codebox.rpc.get("terminal");
-
-    // Client for corvisa api
-    var corvisa = Corvisa(config.api.key, config.api.secret, {
-        endpoint: config.api.endpoint
-    });
-    var corvisaApp = corvisa.application(config.appId);
 
     codebox.rpc.service("corvisa", {
         // Start the simulator and return the shell id
@@ -65,7 +58,6 @@ module.exports = function(codebox) {
 
             return debug(workspace.root(), args.breakpoints)
             .then(function(tmp) {
-                console.log('tmp', tmp);
                 return terminal.create({
                     shellId: "corvisa-debug",
                     command: [
