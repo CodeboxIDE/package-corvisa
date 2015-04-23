@@ -1,4 +1,7 @@
+var Q = require('q');
 var path = require("path");
+var request = require("request");
+var url = require("url");
 
 var Corvisa = require("corvisa");
 var config = require("./config");
@@ -80,16 +83,13 @@ module.exports = function(codebox) {
 
         // List numbers
         numbers: function() {
-            return corvisa.get("number")
-            .then(function(result) {
-                var user = _.first(result.data);
-
-                return _.chain(user.number_orders)
-                    .pluck("number_order_lines")
-                    .flatten()
-                    .pluck("number")
-                    .flatten()
-                    .value();
+            return Q.nfcall(request,
+                url.resolve(config.numbers.endpoint, '/api/box/'+workspace.config('id')+'/numbers'),
+                { json: true}
+            )
+            .spread(function(response, body) {
+                if (response.statusCode != 200) throw "Error "+response.statusCode;
+                return body.numbers || [];
             });
         },
 

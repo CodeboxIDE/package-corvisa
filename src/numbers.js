@@ -21,7 +21,7 @@ var Panel = View.Template.extend({
     initialize: function(options) {
         Panel.__super__.initialize.apply(this, arguments);
 
-        this.numbers = ["+33637380735"];
+        this.numbers = [];
         this.updateNumbers();
     },
 

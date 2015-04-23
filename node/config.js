@@ -2,8 +2,8 @@ module.exports = {
     appId: process.env.CORVISA_APPID,
     api: {
         endpoint: process.env.CORVISA_APIENDPOINT,
-    	key: process.env.CORVISA_APIKEY,
-    	secret: process.env.CORVISA_APISECRET
+        key: process.env.CORVISA_APIKEY,
+        secret: process.env.CORVISA_APISECRET
     },
 
     sip: {
@@ -18,5 +18,9 @@ module.exports = {
     internalCaller: {
         name: process.env.CORVISA_INTERNALCALLER_NAME,
         number: process.env.CORVISA_INTERNALCALLER_NUMBER
+    },
+
+    numbers: {
+        endpoint: process.env.CORVISA_NUMBERS_ENDPOINT
     }
 };

@@ -12,7 +12,8 @@
         "lodash": "~2.4.1",
         "corvisa": "0.0.4",
         "stringify": "3.1.0",
-        "wrench": "~1.5.8"
+        "wrench": "~1.5.8",
+        "request": "~2.55.0"
     },
     "packageDependencies": {
         "run": "CodeboxIDE/package-run",
