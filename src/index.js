@@ -101,13 +101,13 @@ commands.get("run.project").set("run", function() {
 
 // Replace welcome command
 commands.get("application.welcome").set("run", function() {
-    return codebox.tabs.add(codebox.tabs.HtmlPanel, {
+    /*return codebox.tabs.add(codebox.tabs.HtmlPanel, {
         className: "component-corvisa-dialog",
         content: templateWelcome
     }, {
         type: "welcome",
         title: "Welcome"
-    });
+    });*/
 });
 
 // Numbers list
